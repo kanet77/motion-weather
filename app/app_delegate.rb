@@ -11,4 +11,8 @@ class AppDelegate
   def splash_view_controller
     @splash_view_controller ||= SplashViewController.alloc.init
   end
+
+  def weather_display_controller
+    @weather_display_controller ||= WeatherDisplayController.alloc.init
+  end
 end
