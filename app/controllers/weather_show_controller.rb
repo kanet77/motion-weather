@@ -21,19 +21,19 @@ class WeatherShowController < UIViewController
     true
   end
 
-  def setForcast(forcast)
-    if forcast.has_day
-      day_image = UIImageView.alloc.initWithImage(create_weather_image(forcast.day))
-      night_image = UIImageView.alloc.initWithImage(create_weather_image(forcast.night))
+  def setforecast(forecast)
+    if forecast.has_day
+      day_image = UIImageView.alloc.initWithImage(create_weather_image(forecast.day))
+      night_image = UIImageView.alloc.initWithImage(create_weather_image(forecast.night))
       night_image.frame = [[10, 165],[50,42]]
-      @first_description.text = "#{forcast.day.desc}\n#{forcast.day.pred}"
-      @second_description.text = "#{forcast.night.desc}\n#{forcast.night.pred}"
+      @first_description.text = "#{forecast.day.desc}\n#{forecast.day.pred}"
+      @second_description.text = "#{forecast.night.desc}\n#{forecast.night.pred}"
       view.addSubview(day_image)
       view.addSubview(night_image)
     else
-      night_image = UIImageView.alloc.initWithImage(create_weather_image(forcast.night))
+      night_image = UIImageView.alloc.initWithImage(create_weather_image(forecast.night))
       view.addSubview(night_image)
-      @first_description.text = "#{forcast.night.desc}\n#{forcast.night.pred}"
+      @first_description.text = "#{forecast.night.desc}\n#{forecast.night.pred}"
     end
   end
 

@@ -1,21 +1,21 @@
-class Forcast
+class forecast
 
   def initialize(options={})
-    @forcast_date = Time.at(options[:dateTime]/1000)
+    @forecast_date = Time.at(options[:dateTime]/1000)
     @high = options[:high]
     @low = options[:low]
     @has_day = options[:hasDay]
-    @day = DayForcast.new(options)
-    @night = NightForcast.new(options)
+    @day = Dayforecast.new(options)
+    @night = Nightforecast.new(options)
     @temp_unit = options[:temperatureUnits]
   end
 
-  attr_accessor :high, :low, :forcast_date, :has_day, :day, :night, :temp_unit
+  attr_accessor :high, :low, :forecast_date, :has_day, :day, :night, :temp_unit
 
 end
 
 
-class DayForcast
+class Dayforecast
 
   attr_accessor :desc, :icon, :pred
   def initialize(options = {})
@@ -24,7 +24,7 @@ class DayForcast
   @pred = options[:dayPred]
   end
 end
-class NightForcast
+class Nightforecast
 
   attr_accessor :desc, :icon, :pred
   def initialize(options = {})

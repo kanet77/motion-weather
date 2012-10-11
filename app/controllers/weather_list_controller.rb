@@ -15,14 +15,14 @@ class WeatherListController < UITableViewController
     end
   end
 
-  def display_weather(forcasts)
-    @forcasts = forcasts
+  def display_weather(forecasts)
+    @forecasts = forecasts
     self.tableView.reloadData
   end
 
   #Tables need to know how many items to display
   def tableView(tableView, numberOfRowsInSection:section)
-    @forcasts.count
+    @forecasts.count
   end
 
   #setup the cells so they know how to render themselves
@@ -31,15 +31,15 @@ class WeatherListController < UITableViewController
       cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle, reuseIdentifier:CELL_ID)
       cell
     end
-    forcast = @forcasts[indexPath.row]
-    cell.textLabel.text = "#{forcast.forcast_date.strftime("%a")} - #{'High:' + forcast.high + "," if forcast.has_day} Low:#{forcast.low}#{forcast.temp_unit}"
+    forecast = @forecasts[indexPath.row]
+    cell.textLabel.text = "#{forecast.forecast_date.strftime("%a")} - #{'High:' + forecast.high + "," if forecast.has_day} Low:#{forecast.low}#{forecast.temp_unit}"
     #if we have a day icon, display it otherwise display the night icon
-    if forcast.has_day
-      weather_image = create_weather_image(forcast.day)
-      cell.detailTextLabel.text = forcast.day.desc
+    if forecast.has_day
+      weather_image = create_weather_image(forecast.day)
+      cell.detailTextLabel.text = forecast.day.desc
     else
-      weather_image = create_weather_image(forcast.night)
-      cell.detailTextLabel.text = forcast.night.desc
+      weather_image = create_weather_image(forecast.night)
+      cell.detailTextLabel.text = forecast.night.desc
     end
     cell.imageView.image = weather_image
     cell
@@ -47,10 +47,10 @@ class WeatherListController < UITableViewController
 
   #tell the application what to do when someone clicks on a cell
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    forcast = @forcasts[indexPath.row]
+    forecast = @forecasts[indexPath.row]
     controller = UIApplication.sharedApplication.delegate.weather_show_controller
     navigationController.pushViewController(controller, animated:true)
-    controller.setForcast(forcast)
+    controller.setforecast(forecast)
   end
   
 end
